@@ -11,10 +11,10 @@
 
 # Dependency directories
 node_modules
-
+TODO.md
 # TypeScript cache
 *.tsbuildinfo
-
+.husky
 # Logs
 logs
 *.log
@@ -24,8 +24,10 @@ npm-debug.log*
 build
 
 # misc
+# misc
 .sass-cache
-
+.eslintcache
+.eslintcache
 # Optional npm cache directory
 .npm
 
