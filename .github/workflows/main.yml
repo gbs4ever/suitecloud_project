@@ -1,0 +1,32 @@
+name: SDF Validation
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+jobs:
+  sdf-deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'main' && 'production' || 'sandbox' }}
+    needs: [sdf-validate]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions
+        with:
+          ns-account-id: ${{ vars.NS_ACCOUNT_ID }}
+          ns-token-id: ${{ secrets.NS_TOKEN_ID }}
+          ns-token-secret: ${{ secrets.NS_TOKEN_SECRET }}
+      - name: Deploy project to ${{ vars.NS_ACCOUNT_ID }}
+        run: npm run sdfdeploy
+  sdf-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions
+        with:
+          ns-account-id: ${{ vars.NS_ACCOUNT_ID }}
+          ns-token-id: ${{ secrets.NS_TOKEN_ID }}
+          ns-token-secret: ${{ secrets.NS_TOKEN_SECRET }}
+      - name: Validate project against ${{ vars.NS_ACCOUNT_ID }}
+        run: npm run validate
