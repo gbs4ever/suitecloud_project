@@ -7,7 +7,9 @@
     "sdfdeploy": "suitecloud project:deploy",
     "validate": "suitecloud project:deploy --dryrun",
     "clean": "prettier . --write",
-    "upload": "pretty-quick && suitecloud file:upload -i"
+    "upload": "pretty-quick && suitecloud file:upload -i",
+    "auth": "suitecloud account:manageauth -i",
+    "switchauth": "suitecloud account:setup -i"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
