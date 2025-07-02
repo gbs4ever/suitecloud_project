@@ -5,9 +5,11 @@ This guide provides a straightforward setup for handling SuiteCloud Development 
 
 [See more here](https://www.npmjs.com/package/@oracle/suitecloud-cli)
 
-use ```suitecloud file:create -i```
+To get started use ```npm install -g --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli```
+Make sure you have java installed on your machine 
 
-No account has been set up for this project. Run "suitecloud account:setup" to link your project with your account
+
+If No account has been set up for this project. Run "suitecloud account:setup" to link your project with your account
 
 
 For version control we use github with [SDF framework](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_4702622163.html#SuiteCloud-Development-Framework-Overview) . 
