@@ -1,15 +1,5 @@
 name: "sdf-install"
 description: "Run common installation steps for a NetSuite SDF Project"
-inputs:
-  ns-account-id:
-    description: "The Account ID of the target NetSuite environment"
-    required: true
-  ns-token-id:
-    description: "The Token ID for authenticating to the target NetSuite environment"
-    required: true
-  ns-token-secret:
-    description: "The Token Secret for authenticating to the target NetSuite environment"
-    required: true
 runs:
   using: "composite"
   steps:
@@ -28,6 +18,10 @@ runs:
     - name: prettier check
       run: npx prettier . --check
       shell: bash
-    - name: Authenticate project against ${{ inputs.ns-account-id }}
-      run: ./node_modules/.bin/suitecloud account:savetoken --account ${{ inputs.ns-account-id }} --authid ${{ inputs.ns-account-id }} --tokenid ${{ inputs.ns-token-id }} --tokensecret ${{ inputs.ns-token-secret }}
+    - name: Authenticate project against
+      run: npm run saveAuth -- --authtype prod
+      shell: bash
+    - name: Remove Private Key File
+      if: always()
+      run: rm -f private_key.pem
       shell: bash
