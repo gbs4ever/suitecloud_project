@@ -3,11 +3,20 @@ const SuiteCloudJestUnitTestRunner = require("@oracle/suitecloud-unit-testing/se
 module.exports = {
   defaultProjectFolder: "src",
   commands: {
+    "account:setup": {
+      afterExecuting: async (args) => {
+        console.log("We are validating you Netsuite app ...");
+
+        return args;
+      },
+    },
     "project:deploy": {
       beforeExecuting: async (args) => {
-        await SuiteCloudJestUnitTestRunner.run({
-          // Jest configuration options.
-        });
+        console.log("We are validating you Netsuite app ...");
+        if (!args.arguments.dryrun) {
+          await SuiteCloudJestUnitTestRunner.run({
+          });
+        }
         return args;
       },
     },
