@@ -9,5 +9,5 @@ coveragePathIgnorePatterns: [
   "/node_modules/",
   "/lib/moment\\.min\\.js$", // Escape the dots and make sure the path ends with moment.min.js
 ],
-  setupFilesAfterEnv: ["<rootDir>/setuptest.js"], // 👈 Add this line
+  setupFilesAfterEnv: ["<rootDir>/setupTest.js"], // 👈 Add this line
 }
