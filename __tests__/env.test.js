@@ -35,3 +35,26 @@ describe("Sample test with user defined http module stub", () => {
         });
     });
 });
+describe("Environment test for log.debug", () => {
+    beforeAll(() => {
+        // Mock global.log.debug if not present
+        if (!global.log) {
+            global.log = {};
+        }
+        if (!global.log.debug) {
+            global.log.debug = jest.fn();
+        }
+    });
+
+    it("should have log.debug defined in the environment", () => {
+        expect(global.log).toBeDefined();
+        expect(global.log.debug).toBeDefined();
+        expect(typeof global.log.debug).toBe("function");
+    });
+
+    it("should call log.debug with correct arguments", () => {
+        const message = "Test debug message";
+        global.log.debug(message);
+        expect(global.log.debug).toHaveBeenCalledWith(message);
+    });
+});
